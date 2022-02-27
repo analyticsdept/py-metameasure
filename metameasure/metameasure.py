@@ -55,7 +55,7 @@ class MetaMeasure():
             `bool`: indicates if adding a similar object will exceed the threshold
         """
 
-        size = self.measure(json.dumps(obj)) if measure_flattened else self.measure(obj)
+        size = self.measure(json.dumps(obj, default=str)) if measure_flattened else self.measure(obj)
 
         if track_bytes:
             self.tracked_bytes += size
