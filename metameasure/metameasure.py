@@ -58,6 +58,7 @@ class MetaMeasure():
         size = self.measure(json.dumps(obj, default=str)) if measure_flattened else self.measure(obj)
 
         if track_bytes:
+            self.current_bytes = size
             self.tracked_bytes += size
             self.total_bytes += size
         
@@ -94,7 +95,7 @@ class MetaMeasure():
 
         self.remaining_bytes = self.max_size_bytes - self.tracked_bytes
 
-        if self.tracked_bytes >= self.remaining_bytes:
+        if self.current_bytes >= self.remaining_bytes:
             if self.reset_when_threshold_exceeded:
                 self.reset()
             return self.remaining_bytes, True
