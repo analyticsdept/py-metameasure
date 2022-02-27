@@ -21,6 +21,7 @@ class MetaMeasure():
     """
 
     def __init__(self, max_size_bytes=100, reset_when_threshold_exceeded=True):
+        self.current_bytes = 0
         self.max_size_bytes = max_size_bytes
         self.reset_when_threshold_exceeded = reset_when_threshold_exceeded
         self.total_bytes = 0
